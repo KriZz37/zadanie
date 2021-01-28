@@ -26,7 +26,7 @@ function sendSelect() {
 }
 
 $(function () {
-    $('.text-reset').on('click', function () {
+    $('.change-icon').on('click', function () {
         $('.fa', this)
             .toggleClass('fa-caret-right')
             .toggleClass('fa-caret-down');
