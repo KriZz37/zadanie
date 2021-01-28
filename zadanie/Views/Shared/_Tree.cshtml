@@ -1,0 +1,50 @@
+﻿@model zadanie.ViewModels.SeededFilesViewModel
+
+@{
+    var currentSeed = Model.Seed;
+}
+
+@if (Model.Files.Where(x => x.ParentId == currentSeed).Any())
+{
+    <ul style="list-style-type: none" id="item-@currentSeed" class="@(currentSeed != null ? "collapse" : "") w-100">
+        @foreach (var file in Model.Files)
+        {
+            if (file.ParentId == currentSeed)
+            {
+                var inner = new zadanie.ViewModels.SeededFilesViewModel
+                {
+                    Files = Model.Files,
+                    Seed = file.Id
+                };
+
+                <li class="w-100">
+                    @if (file.FormId != null)
+                    {
+                    <a asp-controller="Form" asp-action="Edit" asp-route-id="@file.FormId" class="list-link">
+                        <i class="far fa-file-alt"></i>
+                        @file.Name
+                    </a>
+                    }
+                    else
+                    {
+                        if (file.IsLast == false)
+                        {
+                            <a href="#item-@file.Id" data-toggle="collapse" class="list-link">
+                                <i class="fa fa-caret-right"></i>
+                                <i class="fa fa-folder"></i>
+                                @file.Name
+                            </a>
+                        }
+                        else
+                        {
+                            <i class="fa fa-folder"></i>
+                            @file.Name
+                        }
+                    }
+
+                    @await Html.PartialAsync("_Tree", inner)
+                </li>
+            }
+        }
+    </ul>
+}

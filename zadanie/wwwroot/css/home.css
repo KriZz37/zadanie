@@ -1,0 +1,28 @@
+﻿.card-body {
+    padding: 0;
+}
+
+.card {
+    border: 0;
+}
+
+#tree {
+    min-height: 60vh;
+}
+
+.fa-folder {
+    color: goldenrod;
+}
+
+.fa-file-alt {
+    color: dimgrey;
+}
+
+a.list-link:link, a.list-link:visited, a.list-link:hover, a.list-link:active {
+    text-decoration: none;
+    color: unset;
+}
+
+a.list-link:hover {
+    background-color: rgba(204,204,204,0.2);
+}

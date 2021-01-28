@@ -1,0 +1,30 @@
+﻿@model zadanie.ViewModels.EditFormViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@if (ViewBag.instantEdit == true)
+{
+    <body onload="enableEdit()"></body>
+}
+
+<h2>Edycja formularza: @Model.FileName</h2>
+<div class="card mt-4">
+    <div class="card-body">
+        <form method="post">
+            <input type="hidden" asp-for="FormId" />
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input disabled id="input1" asp-for="Title" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Text"></label>
+                <textarea disabled id="input2" asp-for="Text" class="form-control"></textarea>
+            </div>
+            <button class="btn btn-success">Zapisz</button>
+            <span class="btn btn-outline-primary" role="button" onclick="enableEdit()" id="button">Włącz edytowanie</span>
+            <a class="btn btn-secondary float-right" asp-controller="Home" asp-action="Index">Powrót</a>
+        </form>
+    </div>
+</div>
